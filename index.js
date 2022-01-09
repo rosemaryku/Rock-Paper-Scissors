@@ -1,33 +1,33 @@
 function computerPlay(){
-  let randomNum =  Math.floor(Math.random() * 3); 
-  if (randomNum === 0){
-    return "Rock"; 
-  } else if (randomNum === 1){
-    return "Paper";
-  } else if (randomNum === 2){
-    return "Scissors"; 
+  const randNum = Math.floor(Math.random() * 3) + 1; 
+  let computer = ""; 
+  if (randNum === 1){
+    computer = "rock"; 
+  } else if (randNum === 2){
+    computer = "paper"; 
+  } else if (randNum ===3){
+    computer = "scissors"; 
   }
-} 
-
-const playerSelection = "Rock"; 
-const computerSelection = computerPlay(); 
-
-function playRound(playerSelection, computerSelection){
-  if (playerSelection === "Rock" && computerSelection === "Paper"){
-    return "You Lose! Paper beats Rock"; 
-  } else if (playerSelection === "Rock" && computerSelection === "Scissors"){
-    return "You win! Rock beats Scissors"; 
-  } else if (playerSelection === "Paper" && computerSelection === "Rock"){
-    return "You win! Paper beats Rock"
-  } else if (playerSelection === "Paper" && computerSelection === "Scissors"){
-    return "You lose! Scissors beats Paper"
-  } else if (playerSelection === "Scissors" && computerSelection === "Paper"){
-    return "You win! Scissors beats Paper"
-  } else if (playerSelection === "Scissors" && computerSelection === "Rock"){
-    return "You lose! Rock beats scissors"
-  } else if (playerSelection === computerSelection){
-    return "Tie!"
-  }
+  return computer; 
 }
 
-console.log(playRound(playerSelection, computerSelection))
+function playRound(playerSelection, computerSelection){
+  let result = ""; 
+  let revPlayerSelection = playerSelection.toLowerCase();
+
+  if (revPlayerSelection === computerSelection){
+    result = "Draw tie game!"; 
+  } else if (revPlayerSelection === "Rock" && computerSelection === "Scissors" || revPlayerSelection === "Paper" && computerSelection === "Rock" || revPlayerSelection === "Scissors" && computerSelection === "Paper"){
+    result = `You win! ${revPlayerSelection} beats ${computerSelection}!`; 
+  } else {
+    result = `You lose! ${computerSelection} beats ${revPlayerSelection}!`; 
+  }
+
+  console.log(result); 
+
+}
+
+
+const playerSelection = "ROCK"; 
+const computerSelection = computerPlay(); 
+playRound(playerSelection, computerSelection);
